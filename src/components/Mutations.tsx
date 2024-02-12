@@ -74,7 +74,7 @@ if(isError) return <h3>Error...</h3>
     <h1>Mutations page</h1>
     <Link  className="anchor-link" to="/">Go back</Link>
     <div className="description">
-    <p>Here we can see basic mutations for changing our UI and data without using React Hooks such as useState and useEffect. We have a simple UI of posts and adding / removing setup. We can add or remove posts with the useMutation and useQuery hooks. We also simulate fake network requests by awaiting a promise to resolve after any new query.<br></br>
+    <p>Here we can see basic mutations for changing our UI and data without using React Hooks such as <code>useState</code> and <code>useEffect</code>. We have a simple UI of posts and adding / removing setup. We can add or remove posts with the useMutation and useQuery hooks. We also simulate fake network requests by awaiting a promise to resolve after any new query.<br></br>
     <code>await new Promise(resolve ={">"} setTimeout(resolve, 500)) // handle logic after this</code>
     </p>
     </div>
