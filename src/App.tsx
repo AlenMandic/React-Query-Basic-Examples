@@ -58,9 +58,13 @@ export default function App() {
 
 function Posts() {
 
+  const cachedPosts = queryClient.getQueryData(['posts']) as PostObject
+
   const { data: posts, isLoading, isError } = useQuery({
     queryKey: ['posts'],
     queryFn: getAllPosts,
+    staleTime: 1000 * 60 * 10, //10 minutes
+    initialData: cachedPosts // use cached data if available
   })
 
   if (isLoading) return <div>Loading...</div>
@@ -69,9 +73,13 @@ function Posts() {
   return (
     <>
       <Link className="anchor-link" to="/">Go back</Link>
+      <h1>Basic querying and powerful caching</h1>
       <div className="description">
       <p>This is a basic React Query example of doing asnychronous state management with their <code>useQuery</code> hook. We fetch an array of posts from the <code>jsonplaceholder</code> website/endpoint and display them.<br></br>You can click on individual posts and be taken to their page using <code>React Router</code>. <br></br></p><hr></hr>
       <p>Notice that when you go back to the 'All posts' page, the individual posts you have visited will be highlighted in green. These posts have been cached by React Query and will load extremely fast the next time you visit their pages. Try it! 🤓</p>
+      <hr></hr>
+      <h3>React Query's powerful caching</h3>
+      <p>Open the developer console and go to the network tab and click on 'fetch/xhr' requests, and monitor them while switching between the All Posts page and the Individual Post pages. You will notice that <code>All Posts</code> and any <code>Individual Post</code>only fires a network request once, when you first visit them.You can then switch back between All Posts and an Individual Post, they will load instantly and no new network requests will be made. This is the true power of React Query!</p>
       </div>
 
       <h1 className="posts-h1">All posts</h1>
